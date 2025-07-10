@@ -33,7 +33,7 @@ function Controls({ onGenerate, initialState = {}, className = "" }) {
                       .join("")}
                 </select>
             </div>
-            <button id="generateBtn" class="bg-violet-600 w-full rounded-lg text-white font-semibold h-10 tracking-tighter">Generate Palette</button>
+            <button id="generateBtn" class="bg-violet-600 w-full rounded-lg text-white font-bold h-10 tracking-tighter">Generate Palette</button>
         `;
   }
 

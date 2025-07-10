@@ -2,6 +2,7 @@ import "./style.css";
 import { getColor, getScheme } from "./services/colorAPI";
 import { Controls } from "./components/Controls";
 import { Palette } from "./components/Palette";
+import { Text } from "./components/Text";
 
 const appState = {
   colors: [],
@@ -37,5 +38,18 @@ const controlsEl = Controls({
     /* tw */ "flex flex-col gap-3 bg-neutral-100 border border-neutral-200 p-3 rounded-t-xl w-full",
 });
 
+const textEl = Text({ text: "Sophie" });
+
 app.appendChild(paletteEl);
 app.appendChild(controlsEl);
+
+// Generate Palette on load
+async function init() {
+  const res = await getScheme("000", 12, "");
+  appState.colors = res.colors;
+  console.log(res);
+
+  paletteEl.updateColors(appState.colors);
+}
+
+init();
