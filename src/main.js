@@ -5,6 +5,7 @@ import { Palette } from "./components/Palette";
 import { Text } from "./components/Text";
 import { generateRandomHex } from "./services/generateRandomHex";
 
+const initialHEX = generateRandomHex();
 const appState = {
   colors: [],
 };
@@ -32,7 +33,7 @@ const controlsEl = Controls({
     paletteEl.updateColors(appState.colors);
   },
   initialState: {
-    color: generateRandomHex(),
+    color: initialHEX,
     count: 12,
   },
   className:
@@ -46,7 +47,7 @@ app.appendChild(controlsEl);
 
 // Generate Palette on load
 async function init() {
-  const res = await getScheme(generateRandomHex().replace("#", ""), 12, "");
+  const res = await getScheme(initialHEX.replace("#", ""), 12, "");
   appState.colors = res.colors;
   console.log(res);
 
