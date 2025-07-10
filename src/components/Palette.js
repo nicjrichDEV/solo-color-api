@@ -5,14 +5,23 @@ function Palette({ colors = [], className = "" }) {
   function render() {
     element.innerHTML = colors
       .map(
-        (color) => /* html */ `
-        <div class="w-full h-full flex justify-center items-center" style="background-color: ${color.hex.value}">${color.hex.value}</div>
+        (color, index) => /* html */ `
+        <div class="w-full h-full flex justify-center items-center font-medium" style="background-color: ${color.hex.value}; color: ${color.contrast.value} " data-id=${index}>${color.hex.value}</div>
     `,
       )
       .join("");
   }
 
-  element.addEventListener("click", (e) => console.log(e.target));
+  // Copy hex value
+  element.addEventListener("click", (e) => {
+    if (e.target.dataset.id) {
+      setClipboard(colors[e.target.dataset.id].hex.value);
+    }
+  });
+
+  async function setClipboard(text) {
+    await navigator.clipboard.writeText(text);
+  }
 
   element.updateColors = function (newColors) {
     colors = newColors;
