@@ -8,16 +8,22 @@ const appState = {
 };
 
 const app = document.querySelector("#app");
-app.classList = "flex h-dvh items-center justify-center bg-neutral-50 relative";
+app.classList =
+  "flex h-dvh items-center justify-center bg-neutral-50 flex flex-col";
 
 const paletteEl = Palette({
   colors: appState.colors,
+  className: "h-full w-full flex flex-col",
 });
 
 const controlsEl = Controls({
   onGenerate: async (state) => {
     console.log("Generate pressed with:", state);
-    const res = await getScheme(state.color.replace("#", ""), state.count);
+    const res = await getScheme(
+      state.color.replace("#", ""),
+      state.count,
+      state.mode,
+    );
 
     appState.colors = res.colors;
 
@@ -28,8 +34,8 @@ const controlsEl = Controls({
     count: 12,
   },
   className:
-    /* tw */ "bg-neutral-100 border border-neutral-200 absolute bottom-2 p-3 rounded-xl size-fit",
+    /* tw */ "flex flex-col gap-3 bg-neutral-100 border border-neutral-200 p-3 rounded-t-xl w-full",
 });
 
-app.appendChild(controlsEl);
 app.appendChild(paletteEl);
+app.appendChild(controlsEl);

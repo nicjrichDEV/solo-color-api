@@ -4,7 +4,7 @@ const MODES = {
   monochromeDark: "monochrome-dark",
   monochromeLight: "monochrome-light",
   analogic: "analogic",
-  compliment: "compliment",
+  compliment: "complement",
   analogicComplement: "analogic-complement",
   triad: "triad",
   quad: "quad",
@@ -40,7 +40,9 @@ async function getScheme(
   mode = MODES.monochrome,
 ) {
   try {
-    const req = await fetch(`${URL}scheme?hex=${seedHex}&count=${colorCount}`);
+    const req = await fetch(
+      `${URL}scheme?hex=${seedHex}&mode=${mode}&count=${colorCount}`,
+    );
 
     if (!req.ok) throw new Error(`HTTP error! Status: ${req.status}`);
 

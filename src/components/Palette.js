@@ -6,11 +6,13 @@ function Palette({ colors = [], className = "" }) {
     element.innerHTML = colors
       .map(
         (color) => /* html */ `
-        <div>${color.hex.value}</div>
+        <div class="w-full h-full flex justify-center items-center" style="background-color: ${color.hex.value}">${color.hex.value}</div>
     `,
       )
       .join("");
   }
+
+  element.addEventListener("click", (e) => console.log(e.target));
 
   element.updateColors = function (newColors) {
     colors = newColors;
