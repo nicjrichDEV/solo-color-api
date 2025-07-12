@@ -15,7 +15,14 @@ function Palette({ colors = [], className = "" }) {
   // Copy hex value
   element.addEventListener("click", (e) => {
     if (e.target.dataset.id) {
+      const elementID = e.target.dataset.id;
+      const element = document.querySelector(`[data-id="${elementID}"]`);
+      element.innerText = "Copying...";
       setClipboard(colors[e.target.dataset.id].hex.value);
+
+      setTimeout(() => {
+        element.innerText = `${colors[e.target.dataset.id].hex.value}`;
+      }, 500);
     }
   });
 

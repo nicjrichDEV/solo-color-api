@@ -37,13 +37,14 @@ body {
   border: 1px solid #d4d4d4; /* border and border-neutral-300 */
 }
 
-select,
+.select,
 ::picker(select) {
   appearance: base-select;
   padding: 0.5rem;
 }
 
 ::picker(select) {
-  border: 4px solid salmon;
+  border: 1px solid #d4d4d4;
   border-radius: 12px;
+  margin-bottom: 8px;
 }

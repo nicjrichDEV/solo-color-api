@@ -2,7 +2,6 @@ import "./style.css";
 import { getColor, getScheme } from "./services/colorAPI";
 import { Controls } from "./components/Controls";
 import { Palette } from "./components/Palette";
-import { Text } from "./components/Text";
 import { generateRandomHex } from "./services/generateRandomHex";
 
 const initialHEX = generateRandomHex();
@@ -38,10 +37,8 @@ const controlsEl = Controls({
     count: 12,
   },
   className:
-    /* tw */ "flex flex-col gap-3 bg-neutral-100 border border-neutral-200 p-3 rounded-t-xl w-full",
+    /* tw */ "flex flex-col gap-3 bg-neutral-100 border border-neutral-200 p-3 rounded-t-xl w-full mw-[480px]",
 });
-
-const textEl = Text({ text: "Sophie" });
 
 app.appendChild(paletteEl);
 app.appendChild(controlsEl);
