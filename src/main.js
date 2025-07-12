@@ -12,11 +12,12 @@ const appState = {
 
 const app = document.querySelector("#app");
 app.classList =
-  "flex h-dvh items-center justify-center bg-neutral-50 flex flex-col";
+  "flex h-dvh items-center justify-center bg-neutral-50 flex flex-col relative";
 
 const paletteEl = Palette({
   colors: appState.colors,
-  className: "h-full w-full flex flex-col",
+  className:
+    /* tw */ "h-full w-full flex flex-col md:flex-row md:w-[1128px] md:h-96",
 });
 
 const controlsEl = Controls({
@@ -37,7 +38,7 @@ const controlsEl = Controls({
     count: 12,
   },
   className:
-    /* tw */ "flex flex-col gap-3 bg-neutral-100 border border-neutral-200 p-3 rounded-t-xl w-full mw-[480px]",
+    /* tw */ "flex flex-col gap-3 bg-neutral-100 border border-neutral-200 p-3 rounded-t-xl w-full sm:w-96 sm:absolute sm:bottom-4 sm:rounded-lg",
 });
 
 app.appendChild(paletteEl);
