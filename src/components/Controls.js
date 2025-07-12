@@ -1,4 +1,5 @@
 import { MODES } from "../services/colorAPI";
+import { ColorInput } from "./ColorInput";
 
 function Controls({ onGenerate, initialState = {}, className = "" }) {
   const state = {
@@ -11,10 +12,19 @@ function Controls({ onGenerate, initialState = {}, className = "" }) {
   const element = document.createElement("div");
   element.className = className;
 
+  const colorEl = ColorInput({
+    onChange: (colorState) => {
+      state.color = colorState.color;
+    },
+    initialState: {
+      color: state.color,
+    },
+  });
+
   function render() {
     element.innerHTML = /* html */ `
             <div class="flex gap-2">
-                <input type="color" id="color-input" value=${state.color} />
+                <div id="color-input-slot"></div>
                 <select name="count" id="count-select" class="p-2 rounded-lg border border-neutral-300">
                     ${Array.from({ length: 12 }, (_, i) => {
                       const value = i + 1;
@@ -35,11 +45,11 @@ function Controls({ onGenerate, initialState = {}, className = "" }) {
             </div>
             <button id="generateBtn" class="bg-violet-600 w-full rounded-lg text-white font-bold h-10 tracking-tighter">Generate Palette</button>
         `;
+    element.querySelector("#color-input-slot").appendChild(colorEl);
   }
 
   // Handle change if value of color input or either select changes
   function handleChange(e) {
-    if (e.target.id === "color-input") state.color = e.target.value;
     if (e.target.id === "count-select") state.count = e.target.value;
     if (e.target.id === "mode-select") state.mode = e.target.value;
   }

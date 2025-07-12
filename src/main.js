@@ -7,6 +7,7 @@ import { generateRandomHex } from "./services/generateRandomHex";
 
 const initialHEX = generateRandomHex();
 const appState = {
+  seedColor: "",
   colors: [],
 };
 
